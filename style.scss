@@ -2,7 +2,7 @@ $blue: #1f51ff;
 $green: #7fff00;
 $yellow: #ccff00;
 $red: #ff5e00;
-$black: #291720;
+$black: #001514;
 
 * {
   margin: 0;
@@ -16,7 +16,7 @@ body {
   background: $black;
 }
 
-@mixin container-size($size) {
+@mixin border-size($size) {
   width: #{235-$size}px;
   height: #{235-$size}px;
 }
@@ -39,6 +39,13 @@ body {
   border-radius: 50%;
 }
 
+@mixin content-size($i){
+    content: '';
+    width: $i*500px;
+    height: $i*500px;
+    z-index: -1;
+}
+
 .main-container {
   display: flex;
   flex-wrap: wrap;
@@ -46,24 +53,24 @@ body {
 }
 
 .container {
-  @include container-size(0);
+  @include border-size(0);
   position: relative;
-    overflow: hidden;
+  overflow: hidden;
   margin: 2rem;
   min-width: 235px;
 }
 
 .text-container {
-  @include container-size(5);
   @include position-center;
+  width: 235px;
+  height: 235px;
   background: $black;
-    overflow: hidden;
+  overflow: hidden;
   .text {
-    @include container-size(15);
+    @include border-size(6);
     @include position-center;
     @include center-flex;
     background: $black;
-    // color:rgba(0,0,0,0);
     text-shadow: 0 0 8px $yellow;
     color: $yellow;
   }
@@ -76,106 +83,84 @@ body {
   &::after {
     @include circle;
     @include position-center;
-    content: '';
-    width: 500px;
-    height: 500px;
-    box-shadow: inset 0 0 100px $green;
-    z-index: -1;
+    @include content-size(1);
     transform-origin: center top;
-    animation: border-1 3s linear 1s infinite;
+    box-shadow: inset 0 0 300px $green;
+    animation: animate-1 3s linear 1s infinite;
   }
 }
 .border-2 {
   &::after {
     @include circle;
     @include position-center;
-    content: '';
-    width: 500px;
-    height: 500px;
-    box-shadow: inset 0 0 400px $green;
+    @include content-size(1);
     z-index: -1;
     transform-origin: center top;
-    animation: border-2 2.5s ease-out 1s infinite;
+    box-shadow: inset 0 0 400px $blue;
+    animation: animate-2 2.5s ease-out 1s infinite;
   }
 }
 .border-3 {
   &::after {
     @include circle;
     @include position-center;
-    content: '';
-    width: 2 * 500px;
-    height: 2 * 500px;
-    box-shadow: inset 0 0 400px $green;
-    z-index: -1;
+    @include content-size(2);
     transform-origin: center top;
-    animation: border-2 4.5s ease-out 1s infinite;
+    box-shadow: inset 0 0 400px $red;
+    animation: animate-2 4.5s ease-out 1s infinite;
   }
 }
 .border-4 {
   &::after {
     @include circle;
     @include position-center;
-    content: '';
-    width: 2 * 500px;
-    height: 2 * 500px;
-    box-shadow: inset 0 0 400px $green;
-    z-index: -1;
+    @include content-size(2);
     transform-origin: center top;
-    animation: border-4 4.5s ease-out 1s infinite;
+    box-shadow: inset 0 0 400px $yellow;
+    animation: animate-3 4.5s ease-out 1s infinite;
   }
 }
 .border-5 {
   &::after {
     @include circle;
     @include position-center;
-    content: '';
-    width: 500px;
-    height: 500px;
-    box-shadow: inset 0 0 400px $green;
-    z-index: -1;
+    @include content-size(1);
     transform-origin: center left;
-    animation: border-5 4.5s ease-out 1s infinite;
+    box-shadow: inset 0 0 400px $green;
+    animation: animate-1 4.5s ease-out 1s infinite;
   }
 }
 .border-6 {
   &::after {
     @include circle;
-    position:absolute;
-    top:-150px;
+    @include content-size(0.5);
+    position: absolute;
+    top: -150px;
     transform-origin: bottom center;
-    content: '';
-    width: 300px;
-    height: 300px;
-    box-shadow: inset 0 0 1000px $yellow;
-    z-index: -1;
-    animation: border-6 2.5s linear infinite;
+    box-shadow: inset 0 0 1000px $blue;
+    animation: animate-4 2.5s linear infinite;
   }
 }
 .border-7 {
   &::after {
     @include circle;
-    position:absolute;
-    top:-150px;
+    @include content-size(0.5);
+    position: absolute;
+    top: -150px;
     transform-origin: bottom center;
-    content: '';
-    width: 300px;
-    height: 300px;
-    box-shadow: inset 0 0 1000px $yellow;
-    z-index: -1;
-    animation: border-6 2.5s ease-in-out infinite;
+    box-shadow: inset 0 0 1000px $red;
+    animation: animate-4 2.5s ease-in-out infinite;
   }
 }
 .border-8 {
   &::after {
     @include circle;
-    position:absolute;
-    transform-origin: bottom center;
-    content: '';
-    width: 300px;
-    height: 300px;
+    @include content-size(0.6);
+    position: absolute;
+    top: 0;
+    transform-origin: top center;
     box-shadow: inset 0 0 1000px $yellow;
-    z-index: -1;
-    animation: border-8 2.5s ease-in-out infinite;
+    animation: animate-5 4s linear infinite forwards;
   }
 }
 
@@ -183,7 +168,7 @@ body {
   @include circle;
 }
 
-@keyframes border-1 {
+@keyframes animate-1 {
   0% {
     transform: rotate(0);
   }
@@ -191,7 +176,7 @@ body {
     transform: rotate(360deg);
   }
 }
-@keyframes border-2 {
+@keyframes animate-2 {
   0% {
     transform: rotate(0);
   }
@@ -199,7 +184,7 @@ body {
     transform: rotate(360deg) translateY(-1000px);
   }
 }
-@keyframes border-4 {
+@keyframes animate-3 {
   0% {
     transform: rotate(120);
   }
@@ -207,28 +192,34 @@ body {
     transform: rotate(360deg);
   }
 }
-@keyframes border-5 {
+@keyframes animate-4 {
   0% {
-    transform: rotate(0);
+    transform: rotate(0deg);
   }
   100% {
     transform: rotate(360deg);
   }
 }
-@keyframes border-6 {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg) ;
-  }
-}
 
-@keyframes border-8 {
+@keyframes animate-5 {
   0% {
-    transform: rotate(0deg) translateY(-200px) translateX(-200px);
+    transform: rotate(0);
+    transform-origin: top left;
+  }
+  20% {
+    transform: rotate(90deg);
+    transform-origin: top right;
+  }
+  40% {
+    transform: rotate(180deg);
+    transform-origin: bottom right;
+  }
+  60% {
+    transform: rotate(270deg);
+    transform-origin: bottom left;
   }
   100% {
-    transform: rotate(360deg) translateY(200px, 200px) ;
+    transform: rotate(360deg);
+    transform-origin: top left;
   }
 }

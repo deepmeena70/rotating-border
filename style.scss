@@ -16,11 +16,13 @@ body {
   background: $black;
 }
 
+// border size
 @mixin border-size($size) {
   width: #{235-$size}px;
   height: #{235-$size}px;
 }
 
+// align items centrally using flex
 @mixin center-flex() {
   display: flex;
   flex-direction: column;
@@ -28,6 +30,7 @@ body {
   align-items: center;
 }
 
+// this will position content centrally
 @mixin position-center() {
   position: absolute;
   top: 50%;
@@ -39,11 +42,12 @@ body {
   border-radius: 50%;
 }
 
-@mixin content-size($i){
-    content: '';
-    width: $i*500px;
-    height: $i*500px;
-    z-index: -1;
+//set content and size
+@mixin content-size($i) {
+  content: '';
+  width: $i * 500px;
+  height: $i * 500px;
+  z-index: -1;
 }
 
 .main-container {
@@ -55,7 +59,7 @@ body {
 .container {
   @include border-size(0);
   position: relative;
-  overflow: hidden;
+  overflow: hidden; 
   margin: 2rem;
   min-width: 235px;
 }
@@ -79,6 +83,10 @@ body {
   }
 }
 
+.circle {
+  @include circle;
+}
+
 .border-1 {
   &::after {
     @include circle;
@@ -94,7 +102,6 @@ body {
     @include circle;
     @include position-center;
     @include content-size(1);
-    z-index: -1;
     transform-origin: center top;
     box-shadow: inset 0 0 400px $blue;
     animation: animate-2 2.5s ease-out 1s infinite;
@@ -133,12 +140,12 @@ body {
 .border-6 {
   &::after {
     @include circle;
-    @include content-size(0.5);
+    @include content-size(1);
     position: absolute;
     top: -150px;
     transform-origin: bottom center;
     box-shadow: inset 0 0 1000px $blue;
-    animation: animate-4 2.5s linear infinite;
+    animation: animate-1 2.5s linear  infinite;
   }
 }
 .border-7 {
@@ -148,8 +155,8 @@ body {
     position: absolute;
     top: -150px;
     transform-origin: bottom center;
-    box-shadow: inset 0 0 1000px $red;
-    animation: animate-4 2.5s ease-in-out infinite;
+    box-shadow: inset 0 0 1000px $green;
+    animation: animate-1 2.5s ease-in-out 1s infinite;
   }
 }
 .border-8 {
@@ -157,15 +164,11 @@ body {
     @include circle;
     @include content-size(0.6);
     position: absolute;
-    top: 0;
+    top:0;
     transform-origin: top center;
-    box-shadow: inset 0 0 1000px $yellow;
-    animation: animate-5 4s linear infinite forwards;
+    box-shadow: inset 0 0 1000px $green;
+    animation: animate-4 2s linear 1s infinite forwards;
   }
-}
-
-.circle {
-  @include circle;
 }
 
 @keyframes animate-1 {
@@ -193,15 +196,6 @@ body {
   }
 }
 @keyframes animate-4 {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes animate-5 {
   0% {
     transform: rotate(0);
     transform-origin: top left;
